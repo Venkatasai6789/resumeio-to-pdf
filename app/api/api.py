@@ -38,6 +38,7 @@ def download_resume(
     return Response(
         resumeio.generate_pdf(),
         headers={"Content-Disposition": f'inline; filename="{rendering_token}.pdf"'},
+        media_type="application/pdf",
     )
 
 
