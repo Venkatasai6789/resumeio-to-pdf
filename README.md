@@ -41,6 +41,25 @@ docker run -p 8000:8000 resumeio-to-pdf
 
 Open your browser and access http://localhost:8000
 
+### Deploy to Vercel
+
+This repository includes the Vercel entrypoint (`api/index.py`), configuration (`vercel.json`),
+and `requirements.txt` needed to run FastAPI on Vercel.
+
+1. Push your fork to GitHub.
+2. In the Vercel dashboard, click **Add New → Project** and import the repository.
+3. Set **Framework Preset** to **Other**.
+4. Leave **Build Command** and **Output Directory** empty (Vercel will run the Python serverless
+   function and install dependencies from `requirements.txt`).
+5. Deploy and open the generated `.vercel.app` URL.
+
+Notes:
+- Vercel serverless functions do not provide the Tesseract binary. The app automatically
+  falls back to image-only PDF generation when OCR is unavailable, so downloads still work
+  without internal server errors.
+- If you need OCR/text extraction, deploy using the provided Dockerfile on a platform that
+  supports system packages (for example, Fly.io).
+
 ### Disclaimer
 
 Please be advised that this application is designed for preview purposes only. 
